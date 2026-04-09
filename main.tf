@@ -7,12 +7,6 @@ terraform {
   }
 
   required_version = ">= 1.3.0"
-
-  backend "s3" {
-    bucket = "ouiam-terraform-state"
-    key    = "project3-lambda-api/terraform.tfstate"
-    region = "us-east-1"
-  }
 }
 
 provider "aws" {
@@ -32,7 +26,7 @@ data "aws_iam_policy_document" "lambda_assume_role" {
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  name               = "${var.function_name}-lambda-role"
+  name               = "${var.function_name}-role-proj3"
   assume_role_policy = data.aws_iam_policy_document.lambda_assume_role.json
 }
 
